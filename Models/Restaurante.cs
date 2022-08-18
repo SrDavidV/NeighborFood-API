@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace NeighbodFood2.Models
 {
@@ -15,7 +16,9 @@ namespace NeighbodFood2.Models
 
         public long PK_RestauranteID { get; set; }
         public string RESTA_Nombre { get; set; } = null!;
+        [Required (ErrorMessage ="el campo correo es requerido")] 
         public string? RESTA_Correo { get; set; }
+        public string RESTA_Imagen { get; set; } = null!;
 
         public virtual ICollection<Promocion> Promociones { get; set; }
         public virtual ICollection<Reseña> Reseñas { get; set; }

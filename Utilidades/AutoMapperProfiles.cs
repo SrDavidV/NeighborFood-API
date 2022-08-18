@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using NeighbodFood2.DTOs;
 using NeighbodFood2.Models;
 using Neighborfood.DTOs;
 
@@ -15,6 +16,11 @@ namespace Neighborfood.Utilidades
             CreateMap<Reseña, ReseñaDTO>();
             CreateMap<ReseñaDTO, Reseña>();
             CreateMap<ReseñaCreacionDTO, Reseña>();
+            CreateMap<Restaurante, RestauranteDTO>().ReverseMap();
+            CreateMap<RestauranteCreacionDTO, Restaurante>()
+                 .ForMember(x => x.RESTA_Imagen, options => options.Ignore());
+           
+
         }
     }
 }

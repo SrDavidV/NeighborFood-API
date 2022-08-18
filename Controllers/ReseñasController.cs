@@ -28,20 +28,22 @@ namespace Neighborfood.Controllers
             this.userManager = userManager;
         }
 
-        [HttpGet(Name = "obtenerReseñasCliente")]
-        public async Task<ActionResult<List<ReseñaDTO>>> ListarReseñas(long clienteId)
-        {
-            var exiteCliente = await context.Cliente.AnyAsync(x => x.PK_Cedula == clienteId);
+        //[HttpGet(Name = "obtenerReseñasRestaurante")]
+        //[Route("{clienteId}")]
+        //public async Task<ActionResult<List<ReseñaDTO>>> ListarReseñas(long clienteId)
+        //{
+        //    var exiteCliente = await context.Cliente.AnyAsync(x => x.PK_Cedula == clienteId);
 
-            if (!exiteCliente)
-            {
-                return NotFound();
-            }
+        //    if (!exiteCliente)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var reseñas = await context.Reseña.Where(x => x.FK_ClienteID == clienteId).ToListAsync();
+        //    var reseñas = await context.Reseña.Where(x => x.FK_ClienteID == clienteId).ToListAsync();
 
-            return mapper.Map<List<ReseñaDTO>>(reseñas);
-        }
+        //    return mapper.Map<List<ReseñaDTO>>(reseñas);
+        //}
+
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
