@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NeighbodFood2.Models;
 using NetTopologySuite.Geometries;
@@ -12,9 +13,10 @@ using NetTopologySuite.Geometries;
 namespace NeighbodFood2.Migrations
 {
     [DbContext(typeof(NEIGHBORFOODContext))]
-    partial class NEIGHBORFOODContextModelSnapshot : ModelSnapshot
+    [Migration("20220819154618_Categorias3")]
+    partial class Categorias3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

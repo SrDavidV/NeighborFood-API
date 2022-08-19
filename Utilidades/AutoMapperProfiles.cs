@@ -19,8 +19,14 @@ namespace Neighborfood.Utilidades
             CreateMap<Restaurante, RestauranteDTO>().ReverseMap();
             CreateMap<RestauranteCreacionDTO, Restaurante>()
                  .ForMember(x => x.RESTA_Imagen, options => options.Ignore());
-           
 
+            CreateMap<Categoria, CategoriaCreacionDTO>().ForMember(x => x.CategoriaImagen,
+                options => options.Ignore());
+
+            CreateMap<CategoriaCreacionDTO, Categoria>().ForMember(x => x.CategoriaImagen,
+                options => options.Ignore());
+
+            CreateMap<Categoria, CategoriaDTO>().ReverseMap();
         }
     }
 }

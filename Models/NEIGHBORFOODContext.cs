@@ -27,6 +27,7 @@ namespace NeighbodFood2.Models
         public virtual DbSet<Reseña> Reseña { get; set; } = null!;
         public virtual DbSet<Restaurante> Restaurante { get; set; } = null!;
         public virtual DbSet<Sede> Sede { get; set; } = null!;
+        public virtual DbSet<Categoria> Categoria { get; set; } = null!;
 
 
 

@@ -18,6 +18,8 @@ namespace NeighbodFood2.Models
         public string? PLA_Descripcion { get; set; }
         public string? PLA_Ingredientes { get; set; }
 
+        public int PLA_Categoria { get; set; }  
+
         public virtual ICollection<Fotografia> Fotografias { get; set; }
         public virtual ICollection<Preferencia> Preferencia { get; set; }
 

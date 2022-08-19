@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NeighbodFood2.Models;
 using NetTopologySuite.Geometries;
@@ -12,9 +13,10 @@ using NetTopologySuite.Geometries;
 namespace NeighbodFood2.Migrations
 {
     [DbContext(typeof(NEIGHBORFOODContext))]
-    partial class NEIGHBORFOODContextModelSnapshot : ModelSnapshot
+    [Migration("20220819153833_Categorias2")]
+    partial class Categorias2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -296,7 +298,6 @@ namespace NeighbodFood2.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PK_CategoriaID"), 1L, 1);
 
                     b.Property<string>("CategoriaImagen")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CategoriaNombre")
@@ -428,9 +429,6 @@ namespace NeighbodFood2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PK_PlatoID"), 1L, 1);
 
-                    b.Property<int?>("CategoriaPK_CategoriaID")
-                        .HasColumnType("int");
-
                     b.Property<int>("PLA_Categoria")
                         .HasColumnType("int");
 
@@ -458,8 +456,6 @@ namespace NeighbodFood2.Migrations
 
                     b.HasKey("PK_PlatoID")
                         .HasName("PK__Plato__2CE00A9EFEECC494");
-
-                    b.HasIndex("CategoriaPK_CategoriaID");
 
                     b.ToTable("Plato", (string)null);
                 });
@@ -741,13 +737,6 @@ namespace NeighbodFood2.Migrations
                     b.Navigation("Plato");
                 });
 
-            modelBuilder.Entity("NeighbodFood2.Models.Plato", b =>
-                {
-                    b.HasOne("NeighbodFood2.Models.Categoria", null)
-                        .WithMany("Platos")
-                        .HasForeignKey("CategoriaPK_CategoriaID");
-                });
-
             modelBuilder.Entity("NeighbodFood2.Models.Preferencia", b =>
                 {
                     b.HasOne("NeighbodFood2.Models.Cliente", "Cliente")
@@ -835,11 +824,6 @@ namespace NeighbodFood2.Migrations
                         .HasForeignKey("SedeId")
                         .IsRequired()
                         .HasConstraintName("FK__Sede_Menu__SedeI__4D94879B");
-                });
-
-            modelBuilder.Entity("NeighbodFood2.Models.Categoria", b =>
-                {
-                    b.Navigation("Platos");
                 });
 
             modelBuilder.Entity("NeighbodFood2.Models.Cliente", b =>
