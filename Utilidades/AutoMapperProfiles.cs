@@ -2,13 +2,13 @@
 using NeighbodFood2.DTOs;
 using NeighbodFood2.Models;
 using Neighborfood.DTOs;
-
+using NetTopologySuite.Geometries;
 
 namespace Neighborfood.Utilidades
 {
     public class AutoMapperProfiles : Profile
     {
-        public AutoMapperProfiles()
+        public AutoMapperProfiles(GeometryFactory geometryFactory)
         {
             CreateMap<ClienteCreateDTO, Cliente>();
             CreateMap<Cliente, ClienteDTO>();
@@ -27,6 +27,18 @@ namespace Neighborfood.Utilidades
                 options => options.Ignore());
 
             CreateMap<Categoria, CategoriaDTO>().ReverseMap();
+
+            CreateMap<Sede, SedeDTO>()
+                .ForMember(x => x.Latitud, x => x.MapFrom(y => y.Ubicacion.Y))
+                .ForMember(x => x.Longitud, x => x.MapFrom(y => y.Ubicacion.X));
+
+            CreateMap<SedeDTO, Sede>()
+                .ForMember(x => x.Ubicacion, x => x.MapFrom(y =>
+                geometryFactory.CreatePoint(new Coordinate(y.Latitud, y.Latitud))));
+
+            CreateMap<SedeCreacionDTO, Sede>()
+               .ForMember(x => x.Ubicacion, x => x.MapFrom(y =>
+               geometryFactory.CreatePoint(new Coordinate(y.Latitud, y.Latitud))));
         }
     }
 }

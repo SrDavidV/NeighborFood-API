@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -5,6 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NeighbodFood2.Models;
 using NeighbodFood2.Servicios;
+using Neighborfood.Utilidades;
+using NetTopologySuite;
+using NetTopologySuite.Geometries;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
@@ -68,6 +72,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             Encoding.UTF8.GetBytes(builder.Configuration["LlaveJwt"])),
         ClockSkew = TimeSpan.Zero
     });
+
+builder.Services.AddSingleton<GeometryFactory>(NtsGeometryServices
+    .Instance.CreateGeometryFactory(srid: 4326));
+
+builder.Services.AddSingleton(provider =>
+
+    new MapperConfiguration(config =>
+    {
+        var geometryFactory = provider.GetRequiredService<GeometryFactory>();
+        config.AddProfile(new AutoMapperProfiles(geometryFactory));
+    }).CreateMapper()
+);
 
 
 builder.Services.AddAutoMapper(typeof(Program));

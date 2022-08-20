@@ -35,7 +35,7 @@ namespace NeighbodFood2.DTOs
 
             return mapper.Map<List<CategoriaDTO>>(categorias);
         }
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
         [HttpPost]
         public async Task<ActionResult> CrearCategoria([FromForm]CategoriaCreacionDTO categoriaCreacion)
         {
@@ -66,7 +66,7 @@ namespace NeighbodFood2.DTOs
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
         public async Task<ActionResult> EliminarCategoria(int id)
         {
             var categoria = await context.Categoria.FindAsync(id);

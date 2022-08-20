@@ -10,8 +10,8 @@ namespace NeighbodFood2.Models
         {
             Menu = new HashSet<Menu>();
         }
-
         public int PK_SedeID { get; set; }
+
         public string SED_Direccion { get; set; } = null!;
         public string? SED_Telefono { get; set; }
         public long? FK_RestauranteID { get; set; }
