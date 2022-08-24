@@ -1,13 +1,14 @@
 ﻿using NeighbodFood2.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace NeighbodFood2.DTOs
 {
-    public class RestauranteDTO
+    public class RestauranteSedeDTO
     {
         public long PK_RestauranteID { get; set; }
         public string RESTA_Nombre { get; set; } = null!;
         public string? RESTA_Correo { get; set; }
         public string RESTA_Imagen { get; set; } = null!;
-        public List<SedeDTO> Sedes {get; set;}
+        public ICollection<SedeDTO> Sedes { get; set; }
     }
 }

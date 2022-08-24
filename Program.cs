@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NeighbodFood2.ApiBehavior;
+using NeighbodFood2.Filtros;
 using NeighbodFood2.Models;
 using NeighbodFood2.Servicios;
 using Neighborfood.Utilidades;
@@ -19,7 +21,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers().AddJsonOptions
     (x => x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add(typeof(ParsearBadRequests));
+}).ConfigureApiBehaviorOptions(BehaviorBadRequests.Parsear);
+    
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 

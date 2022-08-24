@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NeighbodFood2.Models;
@@ -25,6 +26,7 @@ namespace Neighborfood.Controllers
             this.context = context;
             this.mapper = mapper;
         }
+
 
         [HttpGet]
         [AllowAnonymous]
@@ -80,7 +82,7 @@ namespace Neighborfood.Controllers
 
             if (consultaCliente != null)
             {
-                return BadRequest($"El usuario con la cedula {clienteCreateDTO.PK_Cedula} ya existe");
+                return BadRequest($"El documento {clienteCreateDTO.PK_Cedula} ya se registro con anterioridad");
             }
 
             var cliente = mapper.Map<Cliente>(clienteCreateDTO);

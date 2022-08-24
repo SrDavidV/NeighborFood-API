@@ -31,9 +31,22 @@ namespace NeighbodFood2.Controllers
         [HttpGet]
         public async Task<ActionResult<List<RestauranteDTO>>> TraerRestarurantes()
         {
-            var Restaurantes = await context.Restaurante.ToListAsync();
+            var Restaurantes = await context.Restaurante.Include(x => x.Sedes).ToListAsync();
 
             return mapper.Map<List<RestauranteDTO>>(Restaurantes);
+        }
+
+        [HttpGet("{RestauranteId}")]
+        public async Task<ActionResult<RestauranteSedeDTO>>TraerRestauranteSede(long RestauranteId)
+        {
+            var consultaRestaurante = await context.Restaurante
+                .Include(x => x.Sedes).FirstOrDefaultAsync(x => x.PK_RestauranteID == RestauranteId);
+            if(consultaRestaurante == null)
+            {
+                return NotFound();
+            }
+
+            return mapper.Map<RestauranteSedeDTO>(consultaRestaurante);
         }
 
         [HttpPost]

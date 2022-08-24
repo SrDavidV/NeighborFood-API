@@ -50,7 +50,6 @@ namespace Neighborfood.Controllers
 
         }
 
-
         [HttpPost("login")]
         public async Task<ActionResult<RespuestaAutenticacion>> Login(CredencialesUsuario credencialesUsuario)
         {

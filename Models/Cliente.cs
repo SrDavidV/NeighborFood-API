@@ -17,7 +17,7 @@ namespace NeighbodFood2.Models
         public string CLI_Nombre { get; set; } = null!;
         [Required(ErrorMessage = "el campo Apellido es requerido")]
         public string CLI_Apellido { get; set; } = null!;
-        [Required(ErrorMessage = "el campo password es requerido")]
+        [Required(ErrorMessage = "ingrese una contraseña valida")]
         public string CLI_Password { get; set; } = null!;
         public DateTime CLI_FechaRegistro { get; set; } = DateTime.Now;
         [Required(ErrorMessage = "el campo Telefono es requerido")]
@@ -25,7 +25,7 @@ namespace NeighbodFood2.Models
         [Required(ErrorMessage = "el campo Ciudad es requerido")]
         public string CLI_Ciudad { get; set; } = null!;
         [Required(ErrorMessage = "el campo Correo es requerido")]
-        [EmailAddress(ErrorMessage = "El campo debe ser un correo valido")]
+        [EmailAddress(ErrorMessage = "ingrese un correo valido")]
         public string CLI_Correo { get; set; } = null!;
         [Required(ErrorMessage = "el campo Genero es requerido")]
         public string? CLI_Genero { get; set; }
