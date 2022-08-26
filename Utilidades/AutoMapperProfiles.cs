@@ -40,6 +40,10 @@ namespace Neighborfood.Utilidades
             CreateMap<SedeCreacionDTO, Sede>()
                .ForMember(x => x.Ubicacion, x => x.MapFrom(y =>
                geometryFactory.CreatePoint(new Coordinate(y.Latitud, y.Latitud))));
+
+            CreateMap<Plato, PlatoDTO>();
+            CreateMap<PlatoDTO, Plato>();
+            CreateMap<PlatoCreacionDTO, Plato>().ReverseMap();
         }
     }
 }
