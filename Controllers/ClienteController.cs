@@ -29,7 +29,6 @@ namespace Neighborfood.Controllers
 
 
         [HttpGet]
-        [AllowAnonymous]
         public async Task<ActionResult<List<ClienteDTO>>> ListarCliente()
         {
             var listaClientes = await context.Cliente.ToListAsync();
@@ -58,7 +57,7 @@ namespace Neighborfood.Controllers
 
         [HttpGet]
         [Route("getclientenombre/{nombre}")]
-        public async Task<ActionResult<List<ClienteDTO>>> traerClientesPorNombre([FromRoute] string nombre)
+        public async Task<ActionResult<List<ClienteDTO>>> TraerClientesPorNombre([FromRoute] string nombre)
         {
             var clientes = await context.Cliente
                 .Where(x => x.CLI_Nombre.Contains(nombre)).ToListAsync();
@@ -70,9 +69,6 @@ namespace Neighborfood.Controllers
 
             return mapper.Map<List<ClienteDTO>>(clientes);
         }
-
-
-
 
         [HttpPost]
         [AllowAnonymous]

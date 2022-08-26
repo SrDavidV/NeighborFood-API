@@ -13,6 +13,7 @@ namespace NeighbodFood2.DTOs
     [Route("api/categorias")]
     [ApiController]
     [EnableCors("permitir")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public class CategoriaController : ControllerBase
     {
         private readonly NEIGHBORFOODContext context;
@@ -29,13 +30,14 @@ namespace NeighbodFood2.DTOs
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List<CategoriaDTO>>> TraerCategorias()
         {
             var categorias = await context.Categoria.ToListAsync();
 
             return mapper.Map<List<CategoriaDTO>>(categorias);
         }
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
+        
         [HttpPost]
         public async Task<ActionResult> CrearCategoria([FromForm]CategoriaCreacionDTO categoriaCreacion)
         {
@@ -66,7 +68,7 @@ namespace NeighbodFood2.DTOs
         }
 
         [HttpDelete("{id}")]
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
+     
         public async Task<ActionResult> EliminarCategoria(int id)
         {
             var categoria = await context.Categoria.FindAsync(id);

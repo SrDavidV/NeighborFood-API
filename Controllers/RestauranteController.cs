@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +14,7 @@ namespace NeighbodFood2.Controllers
     [Route("api/restaurantes")]
     [ApiController]
     [EnableCors("permitir")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Policy = "Admin")]
     public class RestauranteController : ControllerBase
     {
         private readonly NEIGHBORFOODContext context;
@@ -29,6 +32,7 @@ namespace NeighbodFood2.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<List<RestauranteDTO>>> TraerRestarurantes()
         {
             var Restaurantes = await context.Restaurante.Include(x => x.Sedes).ToListAsync();

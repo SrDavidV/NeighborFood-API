@@ -10,9 +10,11 @@ namespace NeighbodFood2.DTOs
         [Required(ErrorMessage = "El nombre del restaurante es requerido")]
         public string RESTA_Nombre { get; set; } = null!;
         [Required(ErrorMessage = "el campo correo es requerido")]
+        [EmailAddress(ErrorMessage = "Ingrese un correo valido")]
         public string? RESTA_Correo { get; set; }
         [PesoImagenValidacion(pesoMaximoEnMegaBytes: 4)]
         [TipoArchivoValidacion(grupoTipoArchivo: GrupoTipoArchivo.Imagen)]
+        [Required(ErrorMessage = "La imagen el requerida")]
         public IFormFile RESTA_Imagen { get; set; } = null!;
 
 
