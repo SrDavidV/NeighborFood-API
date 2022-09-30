@@ -30,6 +30,7 @@ namespace NeighbodFood2.Models
         [Required(ErrorMessage = "el campo Genero es requerido")]
         public string? CLI_Genero { get; set; }
         public int? CLI_Puntos { get; set; }
+        public bool CLI_Estado { get; set; } = true;
 
         public virtual ICollection<Preferencia> Preferencias { get; set; }
         public virtual ICollection<Reseña> Reseñas { get; set; }

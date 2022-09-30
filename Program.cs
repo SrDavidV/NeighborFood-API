@@ -33,6 +33,8 @@ internal class Program
             options.Filters.Add(typeof(ParsearBadRequests));
         }).ConfigureApiBehaviorOptions(BehaviorBadRequests.Parsear);
 
+        builder.Services.AddControllers().AddNewtonsoftJson();
+
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
 
@@ -120,7 +122,8 @@ internal class Program
         }
          );
 
-        builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["ApplicationInsights:ConnectionString"]);
+        builder.Services.AddApplicationInsightsTelemetry(
+            builder.Configuration["ApplicationInsights:ConnectionString"]);
 
         var app = builder.Build();
 

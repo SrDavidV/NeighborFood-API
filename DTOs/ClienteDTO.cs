@@ -13,6 +13,7 @@
         public string CLI_Correo { get; set; } 
         public string? CLI_Genero { get; set; }
         public int? CLI_Puntos { get; set; }
+        public bool CLI_Estado { get; set; } = true;
 
     }
 }
